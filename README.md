@@ -1,2 +1,3 @@
-# Debug-Tables
-Cheat Engine tables that enable various debug settings in many games.
+# Debug Tables
+
+riseofnations.CT: A simple cheat table to enable the debug info overlay in Rise of Nations: Extended Edition (Steam)
