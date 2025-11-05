@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Display Debug Info"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(displayDebug,riseofnations.exe,0F 84 18 04 00 00 33)
+registersymbol(displayDebug)
+
+displayDebug:
+  db 0F 85 18 04 00 00 // jne
+
+[DISABLE]
+
+displayDebug:
+  db 0F 84 18 04 00 00 // je
+
+unregistersymbol(displayDebug)
+
+{
+// ORIGINAL CODE - INJECTION POINT: riseofnations.exe+4B9E98
+
+riseofnations.exe+4B9E71: 8B EC                          - mov ebp,esp
+riseofnations.exe+4B9E73: 64 A1 00 00 00 00              - mov eax,fs:[00000000]
+riseofnations.exe+4B9E79: 6A FF                          - push -01
+riseofnations.exe+4B9E7B: 68 A0 EE 4A 01                 - push riseofnations.exe+69EEA0
+riseofnations.exe+4B9E80: 50                             - push eax
+riseofnations.exe+4B9E81: 64 89 25 00 00 00 00           - mov fs:[00000000],esp
+riseofnations.exe+4B9E88: 83 EC 4C                       - sub esp,4C
+riseofnations.exe+4B9E8B: F7 05 64 D0 8D 01 00 00 00 80  - test [riseofnations.exe+ACD064],80000000
+riseofnations.exe+4B9E95: 56                             - push esi
+riseofnations.exe+4B9E96: 8B F1                          - mov esi,ecx
+// ---------- INJECTING HERE ----------
+riseofnations.exe+4B9E98: 0F 84 18 04 00 00              - je riseofnations.exe+4BA2B6
+// ---------- DONE INJECTING  ----------
+riseofnations.exe+4B9E9E: 33 C0                          - xor eax,eax
+riseofnations.exe+4B9EA0: C7 45 DC 00 00 00 00           - mov [ebp-24],00000000
+riseofnations.exe+4B9EA7: 89 45 D6                       - mov [ebp-2A],eax
+riseofnations.exe+4B9EAA: 33 C9                          - xor ecx,ecx
+riseofnations.exe+4B9EAC: 89 45 D0                       - mov [ebp-30],eax
+riseofnations.exe+4B9EAF: 88 45 DA                       - mov [ebp-26],al
+riseofnations.exe+4B9EB2: A0 11 23 6D 01                 - mov al,[riseofnations.exe+8C2311]
+riseofnations.exe+4B9EB7: 88 45 DB                       - mov [ebp-25],al
+riseofnations.exe+4B9EBA: C7 45 E0 00 00 00 00           - mov [ebp-20],00000000
+riseofnations.exe+4B9EC1: 66 89 4D D4                    - mov [ebp-2C],cx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
